@@ -1,106 +1,76 @@
-# DAC
- INTERFACING DAC WITH 8086 KIT AND GENERATING SAWTOOTH AND SQUARE WAVEFORMS
+# Square-Cube-of-a-number-using-8051
+# 8051 Square  Program
 
 ## AIM
-To write an assembly language program in 8086 to generate Sawtooth and Square waveforms using DAC.
-
----
+To write and execute an Assembly language program for finding the square of a given data using 8051 microcontroller in Keil software.
 
 ## APPARATUS REQUIRED
-
-| S. No | Item              | Specification   | Quantity |
-|-------|------------------|-----------------|----------|
-| 1     | Microprocessor kit | 8086            | 1        |
-| 2     | Power Supply      | +5 V DC, +12 V DC | 1      |
-| 3     | DAC Interface board | -              | 1        |
-
----
+- Personal computer
+- Keil μVision IDE
 
 ## ALGORITHM
+1. Enter the Assembly language program.
+2. Provide the input value to Port 0 (P0).
+3. Execute the program.
+4. The output square value is stored in Port 2 (P2).
 
-### Measurement of Analog Voltage
-1. Send the digital value to DAC.  
-2. Read the corresponding analog value at its output.  
+## PROGRAM
+```
+ORG 0000H
+MOV R0,#50H
+MOV A,@R0 
+MOV B,@R0 
+MUL AB
+INC R0 
+MOV @R0,A
+END
 
-### Waveform Generation
+```
 
-#### Square Waveform
-1. Send low value (00) to the DAC.  
-2. Introduce suitable delay.  
-3. Send high value to DAC.  
-4. Introduce delay.  
-5. Repeat the above procedure.  
-
-#### Sawtooth Waveform
-1. Load low value (00) to accumulator.  
-2. Send this value to DAC.  
-3. Increment the accumulator.  
-4. Repeat step (ii) and (iii) until accumulator value reaches FF.  
-5. Repeat the above procedure from step 1.  
-
----
-
-## PROGRAMS
-
-# 8086 Assembly Programs – DAC Interfacing
-
-## Program: Square Wave
-
-| Memory Location | Program     | Comments                          |
-|-----------------|-------------|-----------------------------------|
-| 1000            | MOV AL,00H  | Load 00H in Accumulator           |
-| 1003            |  OUT 0C8H,AL | Send through output port         |
-| 1005            |  CALL DELAY(1100)  | CALL PROGRAM TO 1100      |
-| 1008            |  MOV AL,0FFH |   Load 00H in Accumulator       |
-| 100A            |   OUT 0C8H,AL|  Send through output port       |
-| 100D            |  CALL DELAY(1100) | CALL PROGRAM TO 1100       |
-
-
-| Memory Location | Program     | Comments                          |
-|-----------------|-------------|-----------------------------------|
-| 1100            | MOV CX,0505  | Load 0505H in Accumulator           |
-| 1103            |  DEC CX | Decrement CX        |
-| 1105           |  JNZ 1104  | RPEAT UNTILL ZERO      |
-| 1108            |   RET |   RETURN TO MAIN PROGRAM      |
-
-
-# Program: Sawtooth wave
-
-## Assembly Program
-
-| Memory Location | Program Instruction   | Comments                        |
-|-----------------|-----------------------|---------------------------------|
-| `1000`          | `START: MOV AL,00H`  | Load `00H` in accumulator       |
-| `1003`          | `LOOP : OUT 0C8H,AL` | Send through output port        |
-| `1005`          | `INC AL`             | Increment contents of accumulator |
-| `1007`          | `JNC LOOP`           | Jump if no carry (continue loop) |
-| `1009`          | `JMP START`          | Go to starting location         |
-
----
-
-## Tabulation
-
-| Waveform  | Amplitude | Time period | 
-|-----------|-----------|-------------|
-| Sawtooth  |           |             | 
-| Square    |           |             |
----
-
-## Model Graph
-
-*(Insert graph/diagram here if available)*
+## OUTPUT
+<img width="1146" height="637" alt="image" src="https://github.com/user-attachments/assets/b9a8d5e1-6192-4fb6-ab4c-f7ba63860332" />
 
 
 
-## OUTPUT IMAGE OF DAC(SAWTOOTH WAVE FROM DSO AND SQUARE WAVE FROM DSO)
+## RESULT
+Thus, the square of the given data is calculated using 8051 Keil.
+
+# 8051 Cube  Program
+
+## AIM
+To write and execute an Assembly language program for finding the cube of a given data using 8051 microcontroller in Keil software.
+
+## APPARATUS REQUIRED
+- Personal computer
+- Keil μVision IDE
+
+## ALGORITHM
+1. Enter the Assembly language program.
+2. Provide the input value.
+3. Execute the program.
+4. The output cube value is stored in a memory location.
+
+## PROGRAM
+```
+ORG 00H
+MOV R0,#50H
+MOV A,@R0
+MOV B,A
+MUL AB
+MOV B,@R0
+MUL AB
+INC R0
+MOV @R0,A
+INC R0
+MOV @R0,B
+END
+```
 
 
+## OUTPUT
+
+<img width="1321" height="698" alt="image" src="https://github.com/user-attachments/assets/d768d060-e5c0-4b65-893a-f6d42b3da20a" />
 
 
-## Result
-
-Thus, the **DAC was interfaced with 8086** and different **waveforms** were successfully generated.
-
-
-
-
+## RESULT
+Thus, the cube of the given data is calculated using 8051 Keil.
